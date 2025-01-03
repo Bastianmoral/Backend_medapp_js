@@ -1,6 +1,6 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
-const CancerTreatment = require("../models/CancerTreatment");
+const CancerTreatment = require("../models/cancerTreatment");
 const router = express.Router();
 
 // Middleware para manejar errores de validación
