@@ -18,8 +18,23 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-app.use(cors());
-app.use(cors({ origin: "http://localhost:3000" }));
+const allowedOrigins = [
+  "http://localhost:3000", // Desarrollo local
+  "https://dummy-frontend-medapp.onrender.com", // Producción
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      // Permite solicitudes sin origen (por ejemplo, Postman) y desde orígenes permitidos
+      callback(null, true);
+    } else {
+      callback(new Error("No permitido por la política CORS"));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
