@@ -33,7 +33,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/cancer-details", cancerDetailsRoutes);
 app.use("/api/cancer-treatments", cancerTreatmentRoutes);
 app.use("/api/ngs-test-results", ngsTestResultRoutes);
-app.use("/api/seller-performance", sellerPerformanceRoutes);
+app.use("/api", sellerPerformanceRoutes);
 
 // Conectar a MongoDB
 mongoose
@@ -41,8 +41,8 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error(err));
+  .then(() => console.log("Conectado a MongoDB Atlas"))
+  .catch((err) => console.error("Error al conectar a MongoDB Atlas:", err));
 
 // Middleware de manejo de errores global
 app.use((err, req, res, next) => {
